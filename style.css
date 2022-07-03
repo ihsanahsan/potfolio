@@ -1,29 +1,14 @@
-body {
-    text-align: center;
-    
+.travel_maindiv
+{
+  border: 1px solid lightgray;
 }
 
-h1 {
-    font-size: 40px;
-    font-family: sans-serif;
-    font-weight: 300;
+.travel_maindiv img 
+{
+    width:100%;
 }
 
-#intro{
-    background-color: rgb(182, 220, 238);
-}
-
-#origami1{
-
-}
-
-#origami2{
-
-}
-
-.line {
-    height: 6px;
-    background-color: #000;
-    width: 70px;
-    margin: 8px auto;
+.travel_maindiv h5 , .travel_maindiv p
+{
+    margin:20px;
 }
