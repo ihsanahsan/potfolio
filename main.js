@@ -1,123 +1,92 @@
+// Create a variable canvas
 
+
+block_y=1;
+block_x=1;
+
+block_image_width = 350;
+block_image_height = 480;
+
+var block_image_object= "";
 var canvas = new fabric.Canvas('myCanvas');
-ball_y=450;
-ball_x=350;
-hole_y=0;
-hole_x=350;
 
-block_image_width = 5;
-block_image_height = 5;
-
-function load_img(){
-	new_image();
-}
-
-function new_image()
+// Complete the function new_image() to add new image
+function new_image(get_image)
 {
-	fabric.Image.fromURL("football.png", function(Img) {
-	ball_obj = Img;
-	ball_obj.scaleToWidth(50);
-	ball_obj.scaleToHeight(50);
-	ball_obj.set({
-	top:ball_y,
-	left:ball_x
+	fabric.Image.fromURL(get_image, function(Img)  {
+		block_image_object = Img;
+		block_image_object.scaleToWidth(block_image_width);
+		block_image_object.scaleToHeight(block_image_height);
+		block_image_object.set({top:block_y , left:block_x });
+		canvas.add(block_image_object);
+
 	});
-	canvas.add(ball_obj);
-	});
+
+
+
+ 
+
+	
+
+
+
+
+
+
+	
+
 }
 
 window.addEventListener("keydown", my_keydown);
 
 function my_keydown(e)
 {
-	keyPressed = e.keyCode;
-	console.log(keyPressed);
-	if((ball_x==350)&&(ball_y<=50)){
-		canvas.remove(ball_obj);
-		console.log("You have Hit the Goal!!!");
-		document.getElementById("hd3").innerHTML="You have Hit the Goal!!!";
-	    document.getElementById("myCanvas").style.borderColor="red";
-	}
-	else{
-		if(keyPressed == '38')
-		{
-			up();
-			console.log("up");
-		}
-		if(keyPressed == '40')
-		{
-			down();
-			console.log("down");
-		}
-		if(keyPressed == '37')
-		{
-			left();
-			console.log("left");
-		}
-		if(keyPressed == '39')
-		{
-			right();
-			console.log("right");
-		}
-	}
-	
-	function up()
+keyPressed = e.keyCode;
+console.log(keyPressed);
+	// Use appropriate keycode to add red image
+	if(keyPressed == '82' ) 
 	{
-		if(ball_y >=5)
-		{
-			
-			ball_y = ball_y - block_image_height;
-			console.log("block image height = " + block_image_height);
-			console.log("When Up arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-	}
-    //Complete the code for the "down()" function
-	function down()
-	{
-		if(ball_y <=450)
-		{
-			
-			ball_y = ball_y + block_image_height;
-			console.log("block image height = " + block_image_height);
-			console.log("When Down arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
+	  block_x = 10;
+	  new_image('red.jpg');
+	  console.log("R");
+
 
 	}
-
-	function left()
+	// Use appropriate keycode to add green image
+	if(keyPressed == "71" )
 	{
-		if(ball_x >5)
-		{
-			ball_x = ball_x - block_image_width;
-			console.log("block image width = " + block_image_width);
-			console.log("When Left arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
+		block_x = 310;
+		new_image('green.png');
+		console.log("G");
+
+
 	}
-
-    //Complete the code for the "right()" function
-	function right()
+	// Use appropriate keycode to add yellow image
+	if(keyPressed == "89" )
 	{
-		if(ball_x <=1050)
-		{
-			ball_x = ball_x - block_image_width;
-			console.log("block image width = " + block_image_width);
-			console.log("When Right arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-
-
-
-
-
-
+        block_x = 560;
+	  new_image('yellow.png');
+	  console.log("Y" );
 		
+
+	}
+	// Use appropriate keycode to add pink image
+	if(keyPressed == "80" )
+	{
+		block_x = 880;
+		new_image('pink.png');
+		console.log("P");
+
+
+	}
+	// Use appropriate keycode to add blue image
+	if(keyPressed == "66" )
+	{
+		block_x = 1040;
+		new_image('blue.png');
+		console.log("B");
+
+
 	}
 	
 }
