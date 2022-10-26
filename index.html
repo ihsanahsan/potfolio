@@ -1,22 +1,24 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Project C83
-        </title>
-    </head>
-    <body>
+<head>
+	<title>Hit the Goal</title>
+<link rel="stylesheet" href="style.css">
+<script src="fabric.js"></script>
 
-        <script src="C83_Template.js">
-        </script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-        <center style="margin-top: 40px;">
-            <h1>
-                My Family Book
-            </h1>
-            <img src="https://i.postimg.cc/MKdhy06Z/family.jpg" style="width: 30%;" id="family_member_image">
-            <h4 id="family_member_name"></h4>
-            <h3 id="family_member_age"></h3>
-            <button onclick="update();">Next</button>
-        </center>
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="body_background" onload="load_img()">
+	<center>
+		<h3 id="hd3">Hit the Goal</h3>
+		<canvas width="750" height="500" id="myCanvas"></canvas>
+
+	</center>
+	<script src="main.js"></script>
+</body>
 </html>
