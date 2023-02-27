@@ -1,25 +1,44 @@
-html, body
-{
-  height: 100%;
-  margin: 0;
-}
+  .heading
+  {
+    width: 100%;
+    margin:0px;
+    
+    box-shadow:5px 5px 15px grey;
+    font-size:23px;
+  }
+  .heading_div
+  {
+    background: white ; 
+    float:none;
+    border-radius: 20px; 
+    color: black;
+    box-shadow:5px 5px 15px grey;
+    padding:10px;
+  }
+  .heading_div2
+  {
+    font-size: 18px ;
+  }
+  .result_para_tag
+  {
+    box-shadow:5px 5px 15px grey;
+    white-space: pre-line;
+    font-size: 20px;
+  }
 
-body
-{
-background-image: url("background.jpg");
-background-size: cover;
-background-position: center;
-}
-#logo{
-    width: 40px ;
-    opacity:40%
-}
-
-
-.login_div
-{
-    margin:10%;
-	background: rgba(255,255,255,0.95);
-    float: none;border-radius: 15px;
-    padding: 20px;  
-}
+  .copy_right_footer {
+     position:fixed;
+     color:white;
+     bottom:0;
+     width:100%;
+     background-color: grey;
+     line-height:3;
+     text-align:center ;
+  }
+  canvas {
+    border:5px solid white;
+    border-radius: 20px;
+    box-shadow:5px 5px 15px grey;
+    margin-top:160px;
+  }
+ 
