@@ -1,37 +1,49 @@
-function setup() {
-  canvas = createCanvas(300, 300);
-  canvas.center();
-  video = createCapture(VIDEO);
-  video.hide();
-  classifier = ml5.imageClassifier('MobileNet', modelLoaded);
-}
+x = 0;
+y = 0;
+draw_circle = "";
+draw_rect = "";
 
-function modelLoaded(){
-      console.log("Model Loaded!");
-}
+var SpeechRecognition = window.webkitSpeechRecognition;
+var recognition = new SpeechRecognition();
 
+function start(){
+    document.getElementById("status").innerHTML = "system is listening please speak";
+    recognition.start();
+}
+recognition.onresult = function(event){
+    console.log(event);
+    var content = event.results[0][0].transcript;
+
+    document.getElementById("status").innerHTML = "The speech has been recognized as:" + content;
+    if(content =="circle")
+    {
+        x= Math.floor(Math.random() * 900);
+        y= Math.floor(Math.random() * 600);
+        document.getElementById("status").innerHTML = "started drawing circle";
+        draw_circle = "set";
+    }
+
+    if(content =="rectangle")
+    {
+        x= Math.floor(Math.random() * 900);
+        y= Math.floor(Math.random() * 600);
+        document.getElementById("status").innerHTML = "started drawing rectangle";
+        draw_rect = "set";
+    }
+}
+function setup(){
+    canvas = createCanvas(900, 600);
+}
 function draw(){
-  image(video, 0, 0, 300, 300);
-  classifier.classify(video, gotResult);
+    if(draw_circle =="set"){
+        radius = Math.floor(Math.random() * 100);
+        circle(x, y , radius);
+        document.getElementById("status").innerHTML = "Circle is drawn.";
+        draw_circle = "";
+    }
+    if(draw_rect == "set"){
+        rect(x, y ,70, 50);
+        document.getElementById("status").innerHTML = "Rectangle is drawn.";
+        draw_rect = "";
+    }
 }
-var previous_result = '';
-function gotResult(error , results){
-     if (error){
-      console.error(error);
-     } else{
-      if((results[0].confidence > 0.5) && (previous_result != results[0].label)){
-        console.log(results);
-        previous_result = results[0].label;
-        var synth = window.speechSynthesis;
-        speak_data = 'Object detected is -'+ results[0].label;
-        var utterThis = new SpeechSynthesisUtterance(speak_data);
-        synth.speak(utterThis);
-
-        document.getElementById("result_object_name").innerHTML = results[0].label;
-        document.getElementById("result_object_accuracy").innerHTML = results[0].confidence.toFixed(3);
-      }
-     }
-}
-
-
-
