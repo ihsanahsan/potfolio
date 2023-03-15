@@ -1,49 +1,41 @@
-x = 0;
-y = 0;
-draw_circle = "";
-draw_rect = "";
+noseX = 0;
+noseY = 0;
+difference = 0;
+rightWristX = 0;
+leftWristX = 0;
 
-var SpeechRecognition = window.webkitSpeechRecognition;
-var recognition = new SpeechRecognition();
 
-function start(){
-    document.getElementById("status").innerHTML = "system is listening please speak";
-    recognition.start();
-}
-recognition.onresult = function(event){
-    console.log(event);
-    var content = event.results[0][0].transcript;
-
-    document.getElementById("status").innerHTML = "The speech has been recognized as:" + content;
-    if(content =="circle")
-    {
-        x= Math.floor(Math.random() * 900);
-        y= Math.floor(Math.random() * 600);
-        document.getElementById("status").innerHTML = "started drawing circle";
-        draw_circle = "set";
-    }
-
-    if(content =="rectangle")
-    {
-        x= Math.floor(Math.random() * 900);
-        y= Math.floor(Math.random() * 600);
-        document.getElementById("status").innerHTML = "started drawing rectangle";
-        draw_rect = "set";
-    }
-}
 function setup(){
-    canvas = createCanvas(900, 600);
+    video = createCapture(VIDEO);
+    video.size(550, 500);
+
+    canvas = createCanvas(550, 550);
+    canvas.position(560, 150);
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
 }
+function modelLoaded(){
+    console.log('PoseNet is Initialized');
+}
+
+function gotPoses(results){
+  if(results.length > 0){
+    console.log(results);
+     noseX =results[0].pose.nose.x;
+     noseY = results[0].pose.nose.y;
+     console.log("noseX = "+ noseX   +  " noseY = " + noseY);
+
+     leftWristX= results[0].pose.leftWrist.x;
+     rightWristX = results[0].pose.rightWrist.x;
+     difference = floor(leftWristX -rightWristX);
+     console.log(" leftWristX = " +leftWristX + " rightWristX = " + rightWristX + " difference = " + difference);
+  }
+}
+
 function draw(){
-    if(draw_circle =="set"){
-        radius = Math.floor(Math.random() * 100);
-        circle(x, y , radius);
-        document.getElementById("status").innerHTML = "Circle is drawn.";
-        draw_circle = "";
-    }
-    if(draw_rect == "set"){
-        rect(x, y ,70, 50);
-        document.getElementById("status").innerHTML = "Rectangle is drawn.";
-        draw_rect = "";
-    }
+  document.getElementById("square_sides").innerHTML =" Width and height of the square  " + difference +" px"
+    background('#99ffc5')
+    fill("#0015ff");
+    stroke("#080808");
+    square(noseX, noseY, difference)
 }

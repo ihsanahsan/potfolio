@@ -1,14 +1,40 @@
+.heading
+{
+    font-size:23px;
+    width:100%;
+    margin:0px;
+    box-shadow:10px 10px 20px grey;
+    color:darkblue;
+}
+
+.note
+{
+    font-size:15px;
+    color:darkblue;
+}
+
+.copy_right_footer
+{
+    position:fixed;
+    color:white;
+    bottom: 0;
+    width:100%;
+    background-color:orangered;
+    line-height:3;
+    text-align:center;
+    color:yellow;
+}
+
+canvas{
+    border:5px solid white;
+    border-radius: 20px;
+   box-shadow:10px 10px 10px red;
+}
+
 body
 {
-	text-align: center;
-}
-span
-{
-	font-size: 18px;
-	color:cyan;
-}
-canvas
-{
-	background:darkcyan;
-	border-radius: 20px;
+    font-style:italic;
+    background-position: center;
+    background-size: cover;
+    
 }
